@@ -121,3 +121,17 @@ Each location point on an axis (minimum value, default value and maximum value) 
 The origin of the design space (often the Regular of the family) needs all axes dimensions defined inside the <location>...</location> tags, where the value is equal to the default value of the axis.
 
 Masters other than the origin, don’t need to specify all the axes in their locations, especially not where axes are intended to behave independent (which saves a lot of different masters to be drawn).
+
+## Baking
+
+Updated Nobel (also copied the CondensedBlack to BlackTmp for now). If real Black is replacing, then also the design space files should be changed to this name.
+Running form Sublime (see also the VariableRecipe markdown file that I am working on. Needs download of free MacDown application to open and preview).   Open the Nobel repo in Sublime (not a free license) Uncomment (just) one of the UFO 2 design space line in the gsubrules.py.
+Open the makeVar-Roman.py in hit cmd-B in Sublime. (select the Tools/Build System--> Python fir the first time).
+If all is installed (fontmaker, fonttools, etc). then this should create a VF in Sublime at the background.
+If Finder/cmd-I is selected on a TTF font to open FontView as default, then generated VF automatically open in FontView is they are finished.
+
+Currently there is no axis-based glyph substitution for Nobel, but it can easily be added to the file.
+The above will be added to the VariableRecipe with screen images.
+I'll do this to the others repo's too, adding more feed back scripts in case the masters don't interpolate yet, using the checks that are also inside Compatibilizer.
+
+
