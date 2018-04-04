@@ -118,6 +118,6 @@ A typical source definition looks like this:
 
 Each location point on an axis (minimum value, default value and maximum value) should have exactly one master ufo defined.
 
-The origin of the design space (often the Regular of the family) needs all axes defined in the <location> tags, where the value is equal to the default value of the axis.
+The origin of the design space (often the Regular of the family) needs all axes dimensions defined inside the <location>...</location> tags, where the value is equal to the default value of the axis.
 
-
+Masters other than the origin, don’t need to specify all the axes in their locations, especially not where axes are intended to behave independent (which saves a lot of different masters to be drawn).
