@@ -30,14 +30,14 @@ sudo sh install.sh
 ### Committing changes 
 
 * Change can be committed using the desktop application
-* Or by using the terminal (faster for usage with ufo’s)
+* Or by using the terminal (faster for usage with UFO’s)
 
 ~~~
 >>> cd ~/Desktop/git/<repository-name>
 >>> git pull;git add *;git commit -m "Description of the committed changes";git pull;git push
 ~~~
 
-These terminal instruction will synchornize all online and local changes.
+These terminal instruction will synchronize all online and local changes.
 
 **Note that a UFO font can contain hundreds or even thousands of files. Moving a UFO to another folder therefore creates a magnitude of changes in the git commit.
 
@@ -60,7 +60,7 @@ The compatibility of the masters can be checked and altered with the RoboFont->C
 
 Starting the baking of Var-fonts, we need to make one or more design space files that define the axes and how the master UFO’s are located. 
 
-Several design space files can co-exist, to test the relation between indiviual axis groups.
+Several design space files can coexist to test the relation between indiviual axis groups.
 
 The design space files should be named after the axes that they support. Separate the axis names by an underscore.
 
@@ -71,7 +71,7 @@ Nobel-wdth.designspace
 Nobel-wdth_wght.designspace
 ~~~
 
-Design space files are XML documents with a relative simple structure.
+Design space files are XML documents with a relatively simple structure.
 
 * Definition of the axes
 * Definition of the ufo masters and their axis location.
@@ -99,7 +99,7 @@ A typical axis definition looks like this:
 </axis>
 ~~~
 
-Although the values all relative, in the latest implementation of fonttools, they are more bound to the type of axis than before. For the [wght] axis it is adviced to use the stem of the capital-H as value. 
+Although the values are relative, in the latest implementation of FontTools they are more bound to the type of axis than before. For the [wght] axis it is advised to use the stem of the capital-H as value. 
 
 A typical source definition looks like this:
 
@@ -116,22 +116,20 @@ A typical source definition looks like this:
 </source>
 ~~~
 
-Each location point on an axis (minimum value, default value and maximum value) should have exactly one master ufo defined.
+Each location point on an axis (minimum value, default value and maximum value) should have exactly one master UFO defined.
 
 The origin of the design space (often the Regular of the family) needs all axes dimensions defined inside the <location>...</location> tags, where the value is equal to the default value of the axis.
 
-Masters other than the origin, don’t need to specify all the axes in their locations, especially not where axes are intended to behave independent (which saves a lot of different masters to be drawn).
+Masters other than the origin don’t need to specify all the axes in their locations, especially not where axes are intended to behave independently (which saves a lot of different masters to be drawn).
 
 ## Baking
 
 Updated Nobel (also copied the CondensedBlack to BlackTmp for now). If real Black is replacing, then also the design space files should be changed to this name.
-Running form Sublime (see also the VariableRecipe markdown file that I am working on. Needs download of free MacDown application to open and preview).   Open the Nobel repo in Sublime (not a free license) Uncomment (just) one of the UFO 2 design space line in the gsubrules.py.
-Open the makeVar-Roman.py in hit cmd-B in Sublime. (select the Tools/Build System--> Python fir the first time).
+Running from Sublime (see also the VariableRecipe markdown file that I am working on. Needs download of free MacDown application to open and preview).   Open the Nobel repo in Sublime (not a free license) Uncomment (just) one of the UFO 2 design space line in the gsubrules.py.
+Open the makeVar-Roman.py in hit cmd-B in Sublime. (select the Tools/Build System--> Python for the first time).
 If all is installed (fontmaker, fonttools, etc). then this should create a VF in Sublime at the background.
 If Finder/cmd-I is selected on a TTF font to open FontView as default, then generated VF automatically open in FontView is they are finished.
 
-Currently there is no axis-based glyph substitution for Nobel, but it can easily be added to the file.
-The above will be added to the VariableRecipe with screen images.
-I'll do this to the others repo's too, adding more feed back scripts in case the masters don't interpolate yet, using the checks that are also inside Compatibilizer.
+Currently there is no axis-based glyph substitution for Nobel, but it can easily be added to the file. The above will be added to the VariableRecipe with screen images. I'll do this to the others repo's too, adding more feed back scripts in case the masters don't interpolate yet, using the checks that are also inside Compatibilizer.
 
 
