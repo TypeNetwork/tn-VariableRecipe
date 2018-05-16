@@ -17,65 +17,68 @@
 
 ### By terminal (faster for usage with UFOs)
 
-* Make a “git” folder on your desktop (or another place of storage).
-* Copy the repository path from github.com and clone the repository in a local folder.
+* Make a “git” folder on your desktop (or another place of storage)
+* Copy the repository path from github.com and use it to clone the repository to a local folder
 
+    mkdir ~/Desktop/git
     cd ~/Desktop/git
     git clone <paste-repository-path-here>
+    cd ~/Desktop/git/<repository-name>
 
 ### Committing changes 
 
-* Change can be committed using the desktop application
-* Or by using the terminal (faster for usage with UFOs)
+Change can be committed using the Github desktop application, or Terminal (which can be faster for usage with UFOs.)
 
-    cd ~/Desktop/git/<repository-name>
+To synchronize all online and local changes, run in Terminal:
+    
     git pull; git add *; git commit -m "Description of the committed changes"; git pull; git push
 
-These terminal instruction will synchornize all online and local changes.
-
-**Note** that a UFO font can contain hundreds or even thousands of files. Moving a UFO to another folder therefore creates a magnitude of changes in the git commit.
+**Note** that a UFO font can contain hundreds or even thousands of files, so moving a UFO to another folder (or renaming it) causes a magnitude of changes in a git commit.
 
 * Make sure not to move UFOs around, or rename them, if not necessary.
-* It is better to use the terminal-commit method, if there are thousands of changes, due to copying or moving UFO files.
+* When you really need to, use the above Terminal command
 
 ## Open the repository 
 
-Open the respository for editing by dragging the entire folder into Sublime (https://www.sublimetext.com). There are many other editors that allow the editing of file/folder trees, but Sublime also offers a nice interface for running the scripts from within the application (without the need for terminal or RoboFont).
+To open the whole respository for editing, drag the entire folder into [Sublime Text](https://www.sublimetext.com). 
+While many editors allow the editing of file/folder trees, Sublime offers a nice interface for running the scripts from within the application - without the need for Terminal or RoboFont.
 
 ## Collections of UFO masters
 
-The UFO masters often are grouped together in a single folder. They not necessarily need to combine into a single Var-font, e.g. roman and italic UFO’s can be joined in the same folder. The design space file will define which masters are used for the various axes, sorting them out.
+UFO masters are often grouped together in a single folder.
+They do not always need form a single var-font, e.g. roman and italic UFO’s can be found in the same folder.
+Instead, designspace files sort them out, and define which masters are used for which axes in which fonts.
 
-Masters that are inteneded to be used in a single Var-font must have matching glyph sets, matching points and matching component references. 
+Masters that are intended to form a single var-font must have matching glyph sets, matching points, and matching component references. 
 
-The compatibility of the masters can be checked and altered with the RoboFont->Compatibilizer tool.
+The compatibility of the masters can be checked and altered with the RoboFont Compatibilizer tool.
 
 ## Edit design space files
 
-Starting the baking of Var-fonts, we need to make one or more design space files that define the axes and how the master UFOs are located. 
+To being generating var-fonts, we need to make one or more designspace files that define the axes and how the master UFOs are located. 
 
-Several design space files can co-exist, to test the relation between indiviual axis groups.
+Several designspace files can co-exist in a folder, to test the relation between individual axes groups.
 
-The design space files should be named after the axes that they support. Separate the axis names by an underscore.
-
-### Examples
+The designspace files should be named after the axes that they support.
+Separate axis names with underscores.
+For example:
 
     Nobel-wght.designspace
     Nobel-wdth.designspace
     Nobel-wdth_wght.designspace
 
-Design space files are XML documents with a relative simple structure.
+designspace files are XML documents with a relatively simple 2-art structure:
 
 * Definition of the axes
-* Definition of the UFO masters and their axis location.
+* Definition of the UFO masters and their axis locations
 
 ```xml
 <designspace format="3">
 	<axes>
-		... (definition of axes here)
+		<!-- definition of axes here -->
 	</axes>
 	<sources>
-		... (definition of ufo-axis-locations here)
+		<!-- definition of ufo-axis-locations here here -->
 	</source>
 </designspace>
 ```
@@ -87,12 +90,14 @@ A typical axis definition looks like this:
 	minimum="30" 
 	default="90" 
 	maximum="250" 
-	name="Weight" 
-	tag="wght">
+	name="Parametric Weight" 
+	tag="pwht">
 </axis>
 ```
 
-Although the values all relative, in the latest implementation of fonttools, they are more bound to the type of axis than before. For the [wght] axis it is adviced to use the stem of the capital-H as value. 
+Although the values are all relative, in the latest implementation of fonttools they are more bound to the type of axis than before.
+
+For the `pwht` axis, use the stem of the capital-H as the default value. 
 
 A typical source definition looks like this:
 
@@ -103,8 +108,8 @@ A typical source definition looks like this:
 	name="Nobel-Regular.ufo" 
 	stylename="Regular">
 	<location>
-		<dimension name="weight" xvalue="90" />
-		<dimension name="width" xvalue="224" />
+		<dimension name="Parametric Weight" xvalue="90" />
+		<dimension name="Parametric Width" xvalue="224" />
 	</location>
 </source>
 ```
@@ -118,10 +123,10 @@ Masters other than the origin, don’t need to specify all the axes in their loc
 ## Baking
 
 * Updated Nobel (also copied the CondensedBlack to BlackTmp for now). If real Black is replacing, then also the design space files should be changed to this name.
-* Running form Sublime (see also the VariableRecipe markdown file that I am working on. Needs download of free MacDown application to open and preview).   Open the Nobel repo in Sublime (not a free license) Uncomment (just) one of the UFO 2 design space line in the gsubrules.py.
-* Open the makeVar-Roman.py in hit cmd-B in Sublime. (select the Tools/Build System--> Python fir the first time).
-* If all is installed (fontmaker, fonttools, etc). then this should create a VF in Sublime at the background.
-* If Finder/cmd-I is selected on a TTF font to open FontView as default, then generated VF automatically open in FontView is they are finished.
+* Running from Sublime (see also the VariableRecipe markdown file that I am working on. Needs download of free [MacDown](https://macdown.uranusjr.com) application to open and preview).   Open the Nobel repo in Sublime (not a free license) Uncomment (just) one of the UFO 2 design space line in `gsubrules.py`
+* Open the `makeVar-Roman.py` and hit cmd-B in Sublime (on first run, select the Tools/Build System --> Python)
+* If all is installed (fontmake, fonttools, etc) then this should create a VF in the background
+* To automatically open generated VFs in FontView when generation is finished, go to Finder, select a TTF font, press cmd-I, and set this filetype to open by default in FontView
 
 Currently there is no axis-based glyph substitution for Nobel, but it can easily be added to the file.
 The above will be added to the VariableRecipe with screen images.
